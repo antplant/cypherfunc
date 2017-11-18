@@ -34,6 +34,18 @@ public class CypherQueryTest {
         assertQueryEvaluates(query, "MATCH (n:Foo)");
     }
 
+    @Test
+    public void matchNodeWithProperties() {
+        CypherQuery query = new CypherQuery().match(m -> m
+                .node(n -> n
+                        .withLabel("Test")
+                        .withProperty("prop1", "foo")
+                        .withProperty("prop2", "bar")));
+
+        assertQueryEvaluates(query,
+                "MATCH (:Test { prop1 : \"foo\" , prop2 : \"bar\" })");
+    }
+
     private void assertQueryEvaluates(CypherQuery query, String expected) {
         StringQueryWriter writer = new StringQueryWriter();
         query.write(writer);
