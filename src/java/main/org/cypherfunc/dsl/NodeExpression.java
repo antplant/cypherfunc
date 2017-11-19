@@ -3,7 +3,7 @@ import org.cypherfunc.dsl.writer.StringQueryWriter;
 
 import java.util.ArrayList;
 
-public class NodeExpression {
+public class NodeExpression implements Expression {
     private String alias;
     private String label;
     private ArrayList<Property> properties = new ArrayList<>();

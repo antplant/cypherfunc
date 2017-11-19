@@ -46,6 +46,17 @@ public class CypherQueryTest {
                 "MATCH (:Test { prop1 : \"foo\" , prop2 : \"bar\" })");
     }
 
+    @Test
+    public void matchRelationship() {
+        CypherQuery query = new CypherQuery()
+                .match(m -> m
+                        .node(n -> n.withAlias("n"))
+                        .relatedTo()
+                        .node(n -> n.withAlias("m")));
+
+        assertQueryEvaluates(query, "MATCH (n)-->(m)");
+    }
+
     private void assertQueryEvaluates(CypherQuery query, String expected) {
         StringQueryWriter writer = new StringQueryWriter();
         query.write(writer);
