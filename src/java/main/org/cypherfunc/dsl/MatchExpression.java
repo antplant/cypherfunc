@@ -1,5 +1,6 @@
 package org.cypherfunc.dsl;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import org.cypherfunc.dsl.writer.StringQueryWriter;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class MatchExpression {
 
     public MatchExpression relatedTo() {
         expressions.add(new RelationshipExpression());
+        return this;
+    }
+
+    public MatchExpression relatedTo(Function<RelationshipExpression, RelationshipExpression> descriptor) {
+        expressions.add(descriptor.apply(new RelationshipExpression()));
         return this;
     }
 }
