@@ -1,4 +1,4 @@
-package org.fluentcypher.dsl.writer;
+package org.cypherfunc.dsl.writer;
 
 public class StringQueryWriter {
     private StringBuilder builder = new StringBuilder();

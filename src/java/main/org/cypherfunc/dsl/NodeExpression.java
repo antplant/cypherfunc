@@ -1,5 +1,5 @@
-package org.fluentcypher.dsl;
-import org.fluentcypher.dsl.writer.StringQueryWriter;
+package org.cypherfunc.dsl;
+import org.cypherfunc.dsl.writer.StringQueryWriter;
 
 import java.util.ArrayList;
 

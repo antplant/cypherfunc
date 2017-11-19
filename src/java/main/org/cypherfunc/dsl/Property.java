@@ -1,6 +1,6 @@
-package org.fluentcypher.dsl;
+package org.cypherfunc.dsl;
 
-import org.fluentcypher.dsl.writer.StringQueryWriter;
+import org.cypherfunc.dsl.writer.StringQueryWriter;
 
 public class Property {
     private final String name;
