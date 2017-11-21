@@ -43,7 +43,7 @@ public class CypherQueryTest {
                         .withProperty("prop2", "bar")));
 
         assertQueryEvaluates(query,
-                "MATCH (:Test { prop1 : \"foo\" , prop2 : \"bar\" })");
+                "MATCH (:Test { prop1 : $foo , prop2 : $bar })");
     }
 
     @Test
