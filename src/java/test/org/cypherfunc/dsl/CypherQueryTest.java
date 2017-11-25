@@ -112,6 +112,15 @@ public class CypherQueryTest {
         assertQueryEvaluates(query, "MATCH (n)-[:KNOWS]-(m)");
     }
 
+    @Test
+    public void multipleMatches() {
+        CypherQuery query = new CypherQuery()
+                .match(m -> m.node(n -> n.withAlias("n").withLabel("Foo")))
+                .match(m -> m.node(n -> n.withAlias("m").withLabel("Bar")));
+
+        assertQueryEvaluates(query, "MATCH (n:Foo)\nMATCH (m:Bar)");
+    }
+
     private void assertQueryEvaluates(CypherQuery query, String expected) {
         StringQueryWriter writer = new StringQueryWriter();
         query.write(writer);
