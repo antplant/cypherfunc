@@ -72,9 +72,9 @@ public class CypherQueryTest {
     public void matchRightPointingRelationship() {
         CypherQuery query = new CypherQuery()
                 .match(m -> m
-                .node(n -> n.withAlias("n"))
-                .relatedTo(r -> r.right())
-                .node(n -> n));
+                        .node(n -> n.withAlias("n"))
+                        .relatedTo(r -> r.right())
+                        .node(n -> n));
 
         assertQueryEvaluates(query, "MATCH (n)-->()");
     }
@@ -83,11 +83,22 @@ public class CypherQueryTest {
     public void matchLeftPointingRelationship() {
         CypherQuery query = new CypherQuery()
                 .match(m -> m
-                .node(n -> n.withAlias("n"))
-                .relatedTo(r -> r.left())
-                .node(n -> n.withAlias("m")));
+                        .node(n -> n.withAlias("n"))
+                        .relatedTo(r -> r.left())
+                        .node(n -> n.withAlias("m")));
 
         assertQueryEvaluates(query, "MATCH (n)<--(m)");
+    }
+
+    @Test
+    public void matchBidirectionalRelationship() {
+        CypherQuery query = new CypherQuery()
+                .match(m -> m
+                        .node(n -> n.withAlias("n"))
+                        .relatedTo(r -> r.left().right())
+                        .node(n -> n.withAlias("m")));
+
+        assertQueryEvaluates(query, "MATCH (n)<-->(m)");
     }
 
     private void assertQueryEvaluates(CypherQuery query, String expected) {
