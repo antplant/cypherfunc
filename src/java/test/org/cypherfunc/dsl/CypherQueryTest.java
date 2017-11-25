@@ -101,6 +101,17 @@ public class CypherQueryTest {
         assertQueryEvaluates(query, "MATCH (n)<-->(m)");
     }
 
+    @Test
+    public void matchRelationshipWithLabel() {
+        CypherQuery query = new CypherQuery()
+                .match(m -> m
+                        .node(n -> n.withAlias("n"))
+                        .relatedTo(r -> r.withLabel("KNOWS"))
+                        .node(n -> n.withAlias("m")));
+
+        assertQueryEvaluates(query, "MATCH (n)-[:KNOWS]-(m)");
+    }
+
     private void assertQueryEvaluates(CypherQuery query, String expected) {
         StringQueryWriter writer = new StringQueryWriter();
         query.write(writer);
