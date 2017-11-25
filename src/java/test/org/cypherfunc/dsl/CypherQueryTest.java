@@ -54,7 +54,7 @@ public class CypherQueryTest {
                         .relatedTo()
                         .node(n -> n.withAlias("m")));
 
-        assertQueryEvaluates(query, "MATCH (n)-->(m)");
+        assertQueryEvaluates(query, "MATCH (n)--(m)");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class CypherQueryTest {
                         .relatedTo(r -> r.withAlias("r"))
                         .node(n -> n.withAlias("m")));
 
-        assertQueryEvaluates(query, "MATCH (n)-[r]->(m)");
+        assertQueryEvaluates(query, "MATCH (n)-[r]-(m)");
     }
 
     private void assertQueryEvaluates(CypherQuery query, String expected) {

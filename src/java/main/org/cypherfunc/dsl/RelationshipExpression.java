@@ -14,7 +14,7 @@ public class RelationshipExpression implements Expression {
             writer.write("[r]");
         }
 
-        writer.write("->");
+        writer.write("-");
     }
 
     public RelationshipExpression withAlias(String alias) {
