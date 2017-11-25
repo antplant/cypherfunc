@@ -1,6 +1,5 @@
 package org.cypherfunc.dsl;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import org.cypherfunc.dsl.writer.StringQueryWriter;
 
 import java.util.ArrayList;
