@@ -79,6 +79,17 @@ public class CypherQueryTest {
         assertQueryEvaluates(query, "MATCH (n)-->()");
     }
 
+    @Test
+    public void matchLeftPointingRelationship() {
+        CypherQuery query = new CypherQuery()
+                .match(m -> m
+                .node(n -> n.withAlias("n"))
+                .relatedTo(r -> r.left())
+                .node(n -> n.withAlias("m")));
+
+        assertQueryEvaluates(query, "MATCH (n)<--(m)");
+    }
+
     private void assertQueryEvaluates(CypherQuery query, String expected) {
         StringQueryWriter writer = new StringQueryWriter();
         query.write(writer);

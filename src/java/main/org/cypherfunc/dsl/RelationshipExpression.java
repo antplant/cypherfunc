@@ -6,9 +6,14 @@ import org.cypherfunc.dsl.writer.StringQueryWriter;
 public class RelationshipExpression implements Expression {
     private String alias;
     private boolean right;
+    private boolean left;
 
     @Override
     public void write(StringQueryWriter writer) {
+        if (left) {
+            writer.write("<");
+        }
+
         writer.write("-");
 
         if(alias != null) {
@@ -29,6 +34,11 @@ public class RelationshipExpression implements Expression {
 
     public RelationshipExpression right() {
         this.right = true;
+        return this;
+    }
+
+    public RelationshipExpression left() {
+        this.left = true;
         return this;
     }
 }
