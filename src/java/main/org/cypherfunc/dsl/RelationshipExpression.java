@@ -5,6 +5,7 @@ import org.cypherfunc.dsl.writer.StringQueryWriter;
 
 public class RelationshipExpression implements Expression {
     private String alias;
+    private boolean right;
 
     @Override
     public void write(StringQueryWriter writer) {
@@ -15,10 +16,19 @@ public class RelationshipExpression implements Expression {
         }
 
         writer.write("-");
+
+        if(right) {
+            writer.write(">");
+        }
     }
 
     public RelationshipExpression withAlias(String alias) {
         this.alias = alias;
+        return this;
+    }
+
+    public RelationshipExpression right() {
+        this.right = true;
         return this;
     }
 }

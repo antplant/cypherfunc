@@ -68,6 +68,17 @@ public class CypherQueryTest {
         assertQueryEvaluates(query, "MATCH (n)-[r]-(m)");
     }
 
+    @Test
+    public void matchRightPointingRelationship() {
+        CypherQuery query = new CypherQuery()
+                .match(m -> m
+                .node(n -> n.withAlias("n"))
+                .relatedTo(r -> r.right())
+                .node(n -> n));
+
+        assertQueryEvaluates(query, "MATCH (n)-->()");
+    }
+
     private void assertQueryEvaluates(CypherQuery query, String expected) {
         StringQueryWriter writer = new StringQueryWriter();
         query.write(writer);
